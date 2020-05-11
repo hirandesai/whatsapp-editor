@@ -14,6 +14,15 @@ The plugin allows user to format text online. The result text can be directly se
 
 `$("#element").whatsappEditor();` OR `$("#element").whatsappEditor(OPTIONS);`
 
+Use 
+
+```
+var editor=$("#element").whatsappEditor(); // Initialize editor
+
+var content=editor.getFormattedContent(); // Formatted WhatsApp content
+```
+
+
 ### Supported Options
 
 * bold: Allows user to select text and mark them as **Bold**
