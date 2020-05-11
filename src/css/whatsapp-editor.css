@@ -1,0 +1,29 @@
+.whatsapp-toolbar {
+    border: solid 1px #ddd;
+    background: #f4f4f4;
+    padding: 10px 5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: none;
+}
+
+    .whatsapp-toolbar > a {
+        color: #000000;
+        padding: 3px;
+        border: solid 1px #ddd;
+        margin: 2px;
+    }
+
+        .whatsapp-toolbar > a:hover {
+            background-color: #d5d4d4;
+        }
+
+        .whatsapp-toolbar > a > span {
+            cursor: pointer;
+        }
+
+.whatsapp-editor {
+    border: solid 1px #ddd;
+    padding: 10px;
+    min-height: 200px;
+}
