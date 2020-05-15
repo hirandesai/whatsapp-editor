@@ -5,7 +5,8 @@
             bold: true,
             italic: true,
             strikethrough: true,
-            monospace: true
+            monospace: true,
+            content:''
         }, options);
 
 
@@ -47,6 +48,7 @@
                     })
                     .appendTo($toolbar);
             }
+
             $toolbar.appendTo($parentElement);
         }
         function format(command) {
@@ -67,6 +69,11 @@
                         return false;
                     }
                 });
+            if (settings.content)
+            {
+                $editor.html(settings.content);
+            }
+
             $editor.appendTo($parentElement);
         }
 
