@@ -29,5 +29,6 @@ var content=editor.getFormattedContent(); // Formatted WhatsApp content
 * italic: Allows user to select text and mark them as *Italic*
 * Strikethrough: Allows user to select text and mark them as ~Strikethrough~
 * Monospace: Allows user to select text and mark them as `Monospace`
+* Content: Allows developer to specify default text for converting to whatsapp type text.
 
 For more information see index.html file.
