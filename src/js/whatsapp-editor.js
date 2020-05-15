@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
 
     $.fn.whatsappEditor = function (options) {
         var settings = $.extend({
@@ -6,7 +6,8 @@
             italic: true,
             strikethrough: true,
             monospace: true,
-            content:''
+            smiles: true,
+            content: ''
         }, options);
 
 
@@ -48,15 +49,42 @@
                     })
                     .appendTo($toolbar);
             }
+            if (settings.smiles) {
+                var $dropdown = $("<a/>")
+                    .addClass("whatsapp-dropdown")
+                                    .attr("href", "javascript:void(0)");
+                var $dropdownContent = $("<div/>").addClass("whatsapp-dropdown-content");
+                prepareSmileMenu($dropdownContent);
+                $("<span/>")
+                    .addClass("fa")
+                    .html("🙂")
+                    .append($dropdownContent)
+                    .appendTo($dropdown);                              
+                                
+                $dropdown.appendTo($toolbar);
+            }
 
             $toolbar.appendTo($parentElement);
         }
-        function format(command) {
+        //Whatsapp Emoji
+        //https://gist.github.com/hkan/264423ab0ee720efb55e05a0f5f90887/revisions
+        function prepareSmileMenu($parentElement) {
+            var smiles = ["👿", "👀", "🌬", "🌞", "🌝", "🌜", "🌛", "🌚", "💀", "💆", "🤗", "🤖", "🤕", "🤔", "🤓", "🤒", "🤐", "🤩", "🤧", "🤥", "🤤", "🤣", "🤢", "🤡", "🤠", "🙁", "🙂", "🙃", "😛", "😟", "😞", "😜", "😓", "😖", "😕", "😔", "😋", "😊", "😉", "😈", "😏", "😎", "😃", "😂", "😁", "😀", "😇", "😅", "😄", "😳", "😲", "😱", "😰", "😷", "😶", "😵", "😫", "😪", "😩", "😨", "😯", "😭", "😬", "😣", "😢", "😡", "😠", "😥", "😤", "⛑", "😌", "😆", "🦄", "😮", "☹", "☺", "💆", "🗣", "🗿"];
+            for (smile in smiles)
+            {
+                $("<a/>").attr("href", "javascript:void(0)").append(smiles[smile]).on("click", function (e) { var value = $(this).html(); format("smile", value); }).appendTo($parentElement);
+            }
+        }
+
+        function format(command, value) {
             if (command === "bold" || command === "italic" || command === "strikethrough") {
                 document.execCommand(command, false);
             }
             else if (command === "monospace") {
                 document.execCommand("fontName", false, "monospace");
+            }            
+            else if (command === "smile") {
+                document.execCommand("insertHTML", false, value);
             }
         }
 
@@ -69,8 +97,7 @@
                         return false;
                     }
                 });
-            if (settings.content)
-            {
+            if (settings.content) {
                 $editor.html(settings.content);
             }
 
@@ -97,7 +124,8 @@
                 .replace(/<\/div>/g, '')
                 .replace(/<i>|<\/i>/g, '_') // Italic
                 .replace(/<strike>|<\/strike>/g, '~')
-                .replace(/<font face="monospace" style="">|<font face="monospace">|<\/font>/g, '```');    // Strike Through
+                .replace(/<font face="monospace" style="">|<font face="monospace">|<\/font>/g, '```')
+                .replace(/<[^>]*>/g, "");    // Strike Through
             return htmlContent;
         }
 

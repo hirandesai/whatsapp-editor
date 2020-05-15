@@ -27,3 +27,39 @@
     padding: 10px;
     min-height: 200px;
 }
+
+.whatsapp-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.whatsapp-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: left;
+}
+
+    .whatsapp-dropdown-content a {
+        color: black;
+        padding: 5px;
+        text-decoration: none;
+        display: inline-block;
+        width: 23px;
+        height: 18px;
+    }
+
+        .whatsapp-dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+.whatsapp-dropdown:hover .whatsapp-dropdown-content {
+    display: block;
+}
+
+.whatsapp-dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
