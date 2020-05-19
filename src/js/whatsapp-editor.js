@@ -120,7 +120,7 @@
         function prepareFormattedContent(htmlContent) {
             htmlContent = htmlContent
                 .replace(/<b>|<\/b>/g, '*') // BOLD
-                .replace(/<div>/g, '\n')    // LINE BREAK
+                .replace(/<div>|<br>|<br\/>/g, '\n')    // LINE BREAK
                 .replace(/<\/div>/g, '')
                 .replace(/<i>|<\/i>/g, '_') // Italic
                 .replace(/<strike>|<\/strike>/g, '~')
