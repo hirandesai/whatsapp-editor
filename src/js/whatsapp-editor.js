@@ -7,6 +7,7 @@
             strikethrough: true,
             monospace: true,
             smiles: true,
+            html_content: false,
             content: ''
         }, options);
 
@@ -120,12 +121,17 @@
         function prepareFormattedContent(htmlContent) {
             htmlContent = htmlContent
                 .replace(/<b>|<\/b>/g, '*') // BOLD
-                .replace(/<div>|<br>|<br\/>/g, '\n')    // LINE BREAK
-                .replace(/<\/div>/g, '')
                 .replace(/<i>|<\/i>/g, '_') // Italic
                 .replace(/<strike>|<\/strike>/g, '~')
-                .replace(/<font face="monospace" style="">|<font face="monospace">|<\/font>/g, '```')
-                .replace(/<[^>]*>/g, "");    // Strike Through
+                .replace(/<font face="monospace" style="">|<font face="monospace">|<\/font>/g, '```');
+                
+            if (!settings.html_content) {
+                htmlContent = htmlContent
+                    .replace(/<div>|<br>|<br\/>/g, '\n')    // LINE BREAK
+                    .replace(/<\/div>/g, '')
+                    .replace(/<[^>]*>/g, "");    // Strike Through
+            }
+            
             return htmlContent;
         }
 
